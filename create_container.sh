@@ -172,9 +172,9 @@ IP=$(pct exec $CTID ip a s dev eth0 | sed -n '/inet / s/\// /p' | awk '{print $2
 info "Successfully created Portainer LXC to $CTID."
 msg "
 
-Portainer is reachable by going to the following URLs.
-
-      http://${IP}:9000
-      http://${HOSTNAME}.local:9000
+Enjoy
+      Portainer: http://${IP}:9000
+      VSCode: http://${IP}:8443
+      Bitwarden: http://${IP}:80
 
 "
