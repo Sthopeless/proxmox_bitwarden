@@ -97,11 +97,11 @@ FOLDER_BITWARDEN='/docker/bitwarden'
 mkdir -p $(dirname $FOLDER_BITWARDEN)
 docker run -d \
   --name bitwarden \
-  -v /docker/bitwarden:/data/ \
+  -v /docker/bitwarden:/data \
   -v /etc/timezone:/etc/timezone:ro \
   -v /etc/localtime:/etc/localtime:ro \
   -p 80:80 -p 3012:3012 \
-  -e ADMIN_TOKEN=RootPassword \ 
+  -e ADMIN_TOKEN=RootPassword \
   bitwardenrs/server:latest &>/dev/null
 
 # Customize container
