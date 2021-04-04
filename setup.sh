@@ -61,21 +61,11 @@ mkdir -p $(dirname $FOLDER_PORTAINER)
 docker run -d \
   -p 8000:8000 \
   -p 9000:9000 \
-  --label com.centurylinklabs.watchtower.enable=true \
   --name=portainer \
   --restart=always \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v /docker/portainer:/data \
   portainer/portainer-ce &>/dev/null
-
-# Install Watchtower
-msg "Installing Watchtower..."
-docker run -d \
-  --name watchtower \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  containrrr/watchtower \
-  --cleanup \
-  --label-enable &>/dev/null
 
 # Install VSCode
 msg "Installing VSCode..."
@@ -85,7 +75,6 @@ docker run -d \
   --name=vscode \
   -e TZ=Europe/Amsterdam \
   -p 8443:8443 \
-  --label com.centurylinklabs.watchtower.enable=true \
   -v /docker/vscode:/config \
   -v /docker:/config/workspace/Server \
   --restart unless-stopped \
