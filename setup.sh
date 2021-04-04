@@ -57,8 +57,7 @@ sh <(curl -sSL https://get.docker.com) &>/dev/null
 # Install Portainer
 msg "Installing Portainer..."
 FOLDER_PORTAINER='/docker/portainer'
-mkdir -p $FOLDER_PORTAINER
-# docker volume create portainer_data >/dev/null
+mkdir -p $(dirname $FOLDER_PORTAINER)
 docker run -d \
   -p 8000:8000 \
   -p 9000:9000 \
@@ -81,7 +80,7 @@ docker run -d \
 # Install VSCode
 msg "Installing VSCode..."
 FOLDER_VSCODE='/docker/vscode'
-mkdir -p $FOLDER_VSCODE
+mkdir -p $(dirname $FOLDER_VSCODE)
 docker run -d \
   --name=vscode \
   -e TZ=Europe/Amsterdam \
@@ -90,27 +89,12 @@ docker run -d \
   -v /docker/vscode:/config \
   -v /docker:/config/workspace/Server \
   --restart unless-stopped \
-  ghcr.io/linuxserver/code-server &>/dev/null
-
-# Install VSCode
-msg "Installing VSCode..."
-FOLDER_VSCODE='/docker/vscode'
-mkdir -p $FOLDER_VSCODE
-docker run -d \
-  --name=vscode \
-  -e TZ=Europe/Amsterdam \
-  -p 8443:8443 \
-  --label com.centurylinklabs.watchtower.enable=true \
-  -v /docker/vscode:/config \
-  -v /docker:/config/workspace/Server \
-  --restart unless-stopped \
-  --label com.centurylinklabs.watchtower.enable=false \
   ghcr.io/linuxserver/code-server &>/dev/null
 
 # Install BitWarden
 msg "Installing BitWarden..."
-FOLDER_BITWADEN='/docker/vscode'
-mkdir -p $FOLDER_BITWADEN  
+FOLDER_BITWADEN='/docker/bitwarden'
+mkdir -p $(dirname $FOLDER_BITWADEN)
 docker run -d \
   --name bitwarden \
   -v /docker/bitwarden:/data/ \
@@ -118,7 +102,7 @@ docker run -d \
   -v /etc/localtime:/etc/localtime:ro \
   -p 80:80 -p 3012:3012 \
   -e ADMIN_TOKEN=RootPassword \ 
-  bitwardenrs/server:latest
+  bitwardenrs/server:latest &>/dev/null
 
 # Customize container
 msg "Customizing container..."
