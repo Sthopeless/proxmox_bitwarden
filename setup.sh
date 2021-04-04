@@ -93,8 +93,8 @@ docker run -d \
 
 # Install BitWarden
 msg "Installing BitWarden..."
-FOLDER_BITWADEN='/docker/bitwarden'
-mkdir -p $(dirname $FOLDER_BITWADEN)
+FOLDER_BITWARDEN='/docker/bitwarden'
+mkdir -p $(dirname $FOLDER_BITWARDEN)
 docker run -d \
   --name bitwarden \
   -v /docker/bitwarden:/data/ \
