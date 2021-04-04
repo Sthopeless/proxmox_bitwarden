@@ -174,7 +174,7 @@ msg "
 
 Enjoy
       Portainer: http://${IP}:9000
-      VSCode: http://${IP}:8443
+         VSCode: http://${IP}:8443
       Bitwarden: http://${IP}:80
 
 "
